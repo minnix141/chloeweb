@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Character Name</title>
+
+<style>
+/* ---------- Base variables ---------- */
+:root {
+  --bg-main: #12141b;
+  --bg-content: #1a1d26;
+  --text-main: #e0e0e0;
+  --text-muted: #a8a8b3;
+  --accent: #7f8fa6;
+  --border-soft: rgba(255,255,255,0.08);
+}
+
+/* ---------- Global styles ---------- */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", "Segoe UI", sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  line-height: 1.6;
+
+  /* Side background image */
+  background-image: url("#");
+  background-repeat: no-repeat;
+  background-position: left top, right bottom;
+  background-size: 35vw auto;
+  background-attachment: fixed;
+}
+
+/* ---------- Layout container ---------- */
+.page {
+  max-width: 900px;
+  margin: 4rem auto;
+  background: var(--bg-content);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  border: 1px solid var(--border-soft);
+}
+
+/* ---------- Header ---------- */
+.header {
+  position: relative;
+  height: 320px;
+  background-image: url("https://www.shutterstock.com/blog/wp-content/uploads/sites/5/2020/07/trendy-background-ideas-cover.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+/* Soft fade into page */
+.header::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 140px;
+  background: linear-gradient(to bottom, rgba(0,0,0,0), var(--bg-content));
+}
+
+.header-title {
+  position: absolute;
+  bottom: 2rem;
+  left: 2.5rem;
+  z-index: 2;
+}
+
+.header-title h1 {
+  margin: 0;
+  font-size: 2.5rem;
+  letter-spacing: 0.04em;
+}
+
+.header-title span {
+  display: block;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin-top: 0.4rem;
+}
+
+/* ---------- Content ---------- */
+.content {
+  padding: 2.5rem;
+}
+
+/* ---------- Info section ---------- */
+.info-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.info-block {
+  background: rgba(255,255,255,0.02);
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid var(--border-soft);
+}
+
+.info-block h2 {
+  margin-top: 0;
+  font-size: 1.1rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+/* Portrait / symbol */
+.portrait {
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid var(--border-soft);
+}
+
+/* ---------- Sections ---------- */
+.section {
+  margin-bottom: 3rem;
+}
+
+.section h2 {
+  font-size: 1.2rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+
+.section p {
+  margin-top: 0;
+  color: var(--text-main);
+}
+
+/* ---------- Lists ---------- */
+ul {
+  padding-left: 1.2rem;
+}
+
+li {
+  margin-bottom: 0.5rem;
+  color: var(--text-muted);
+}
+
+/* ---------- Footer ---------- */
+.footer {
+  text-align: center;
+  padding: 1.5rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border-soft);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+  body {
+    background-image: none;
+  }
+
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .header {
+    height: 240px;
+  }
+}
+/* ---------- Gallery ---------- */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1rem;
+}
+
+.gallery img {
+  width: 100%;
+  border-radius: 10px;
+  cursor: pointer;
+  border: 1px solid var(--border-soft);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.gallery img:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+}
+
+/* ---------- Lightbox ---------- */
+.lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(10,10,15,0.85);
+  backdrop-filter: blur(6px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 12px;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 2rem;
+  right: 2.5rem;
+  font-size: 2.5rem;
+  color: #fff;
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.lightbox-close:hover {
+  opacity: 1;
+}
+/* ---------- Lightbox content ---------- */
+.lightbox-content {
+  text-align: center;
+  max-width: 90%;
+}
+
+.lightbox-caption {
+  margin-top: 1rem;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.caption-text {
+  margin: 0.4rem 0;
+}
+
+.caption-credit a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.caption-credit a:hover {
+  text-decoration: underline;
+}
+
+
+</style>
+</head>
+
+<body>
+
+<div class="page">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-title">
+      <h1>Character Name</h1>
+      <span>Alias · Role · Setting</span>
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="content">
+
+    <!-- Info grid -->
+    <div class="info-grid">
+
+      <div class="info-block">
+        <h2>Quick Info</h2>
+        <p><strong>Age:</strong> 28</p>
+        <p><strong>Occupation:</strong> Lorem Ipsum Specialist</p>
+        <p><strong>Affiliation:</strong> Unknown Collective</p>
+        <p><strong>Status:</strong> Active</p>
+      </div>
+
+      <div class="info-block">
+        <img src="https://d38b044pevnwc9.cloudfront.net/site/promeai/config/upscaler/example/21.webp" alt="Character portrait" class="portrait">
+      </div>
+
+    </div>
+
+    <!-- Overview -->
+    <div class="section">
+      <h2>Overview</h2>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt
+        ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+        laboris nisi ut aliquip ex ea commodo consequat.
+      </p>
+    </div>
+
+    <!-- Themes -->
+    <div class="section">
+      <h2>Themes</h2>
+      <ul>
+        <li>Crime and moral ambiguity</li>
+        <li>Faith, doubt, and control</li>
+        <li>Violence as narrative tension</li>
+        <li>Power dynamics</li>
+      </ul>
+    </div>
+
+    <!-- Notes -->
+    <div class="section">
+      <h2>Notes</h2>
+      <p>
+        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+        pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+        mollit anim id est laborum.
+      </p>
+    </div>
+    
+<div class="section">
+  <h2>Gallery</h2>
+
+  <div class="gallery">
+
+    <img 
+      src="https://www.mamp.one/wp-content/uploads/2024/09/image-resources2.jpg"
+      data-full="https://www.mamp.one/wp-content/uploads/2024/09/image-resources2.jpg"
+      data-caption="Character concept art, early design phase."
+      data-credit="Art by ArtistName"
+      data-credit-link="https://artistwebsite.com"
+      alt=""
+    >
+
+    <img 
+      src="https://www.mamp.one/wp-content/uploads/2024/09/image-resources2.jpg"
+      data-full="https://www.mamp.one/wp-content/uploads/2024/09/image-resources2.jpg"
+      data-caption="Illustration depicting key narrative moment."
+      data-credit="Art by AnotherArtist"
+      data-credit-link="https://anotherartist.com"
+      alt=""
+    >
+
+  </div>
+</div>
+
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+  <span class="lightbox-close">&times;</span>
+
+  <div class="lightbox-content">
+    <img class="lightbox-img" src="" alt="">
+
+    <div class="lightbox-caption">
+      <p class="caption-text"></p>
+      <p class="caption-credit"></p>
+    </div>
+  </div>
+</div>
+
+
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    © Your Name · Fictional character
+  </div>
+
+</div>
+
+<script>
+const galleryImages = document.querySelectorAll(".gallery img");
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.querySelector(".lightbox-img");
+const captionText = document.querySelector(".caption-text");
+const captionCredit = document.querySelector(".caption-credit");
+const closeBtn = document.querySelector(".lightbox-close");
+
+galleryImages.forEach(img => {
+  img.addEventListener("click", () => {
+    lightboxImg.src = img.dataset.full || img.src;
+
+    captionText.textContent = img.dataset.caption || "";
+
+    if (img.dataset.credit) {
+      if (img.dataset.creditLink) {
+        captionCredit.innerHTML = `<a href="${img.dataset.creditLink}" target="_blank" rel="noopener">${img.dataset.credit}</a>`;
+      } else {
+        captionCredit.textContent = img.dataset.credit;
+      }
+    } else {
+      captionCredit.textContent = "";
+    }
+
+    lightbox.style.display = "flex";
+  });
+});
+
+closeBtn.addEventListener("click", closeLightbox);
+
+lightbox.addEventListener("click", (e) => {
+  if (e.target === lightbox) {
+    closeLightbox();
+  }
+});
+
+function closeLightbox() {
+  lightbox.style.display = "none";
+  lightboxImg.src = "";
+  captionText.textContent = "";
+  captionCredit.textContent = "";
+}
+</script>
+
+
+</body>
+</html>
